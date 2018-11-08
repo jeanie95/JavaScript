@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript Assignment</title>
+</head>
+<body>
+    <canvas id = "canvas" width = "800px" height = "500px">
+
+    </canvas>
+
+<script>
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext("2d");
+x= 10;
+y= 10;
+rad = 10;
+a = 'black';
+isClicked = false;
+
+function drawArc(x,y,radius){
+    ctx.beginPath();
+    ctx.arc(x,y,radius,0,Math.PI*2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = a;
+
+}
+
+document.onmousedown = function(event){
+    isClicked = true;
+}
+
+document.onmouseup = function(){
+    isClicked = false;
+}
+
+canvas.onmousemove = function(event){
+    x=event.clientX;
+    y=event.clientY;
+    if(isClicked){
+        drawArc(x,y,rad);
+    }
+    else{
+        return false;
+    }
+}
+
+document.onkeyup = function(e){
+    if (e.which == 32) {
+        ctx.clearRect(0,0,800,500)
+    }
+    if (e.which == 38) {
+        rad+=1
+    }
+
+    if(e.which ==40) {
+        rad-=1
+    }
+
+    if (e.which == 66){
+        a = 'blue'
+    }
+    if (e.which == 71){
+        a = 'green'
+    }
+    if (e.which == 82){
+        a = 'red'
+    }
+    if (e.which == 89){
+        a = 'yellow'
+    }
+
+}
+
+</script>
+
+</body>
+</html>
